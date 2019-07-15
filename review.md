@@ -63,3 +63,4 @@ try{}里有一个 return 语句，那么紧跟在这个 try 后的 finally{}里�
 常见的异常？
 - ArithmeticException（算术异常）- ClassCastException （类转换异常）- IllegalArgumentException （非法参数异常）- IndexOutOfBoundsException （下标越界异常- NullPointerException （空指针异常）- SecurityException （安全异常），ClassNotFoundException(类未找到异常），SQLException（sql语句异常），finally与finalize的区别：通常放在try...catch...的后面构造总是执行代码块，这就意味着程序无论正常执行，还是发生异常，这里的代码只要JVM不关闭都能执行，可以将释放外部资源的代码写在finally块中，finalize:Object中定义的方法，java中允许使用finalize()方法在垃圾处理器中将对象从内存中清除出去之前，做必要的清理工作，这个方法是有垃圾回收器，在销毁对象时调用的，通过重写finalize()方法可以整理系统资源，或者执行其他的清理工作，
 注意：try...catch...中异常（能使用父类型的地方一定能使用子类型），即catch中的异常能够抓住try中的异常。
+Collection与Collections的区别：Collection是一个接口，它是set、List等容器的父接口，Collections是一个工具类，提供了一系列的静态方法来辅助容器操作，这些方法包含对容器的搜索、排序、线程安全化等操作。
