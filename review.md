@@ -66,3 +66,4 @@ try{}里有一个 return 语句，那么紧跟在这个 try 后的 finally{}里�
 Collection与Collections的区别：Collection是一个接口，它是set、List等容器的父接口，Collections是一个工具类，提供了一系列的静态方法来辅助容器操作，这些方法包含对容器的搜索、排序、线程安全化等操作。
 @PathVariable 可以将URL中占位符参数绑定到控制器处理方法的入参中，Url中的{xxx}占位符可以通过@PathVariable("xxx")绑定到方法的入参中。@Param注解是给参数命名，参数命名后就能根据名字得到参数值，正确的将参数传入sql语句中，而@Param注解括号中的参数名称为sql语句中的数据，用括号中的参数名称代替sql语句中的参数。
 将普通类加入Ioc容器中定义Bean的注解：@Component、@Service、@Controller、@Bean、@Repository，@Qualifier注解定义工厂名称的方法，@Scope注解定义该bean作用域的范围，@Configuration注解是将这个类作为创建各种bean的工厂。CGLIB简称动态代理：而在spring框架中@Component注解，在使用@Component注解的类中不会强制使用CGLIB代理去拦截方法和属性，而在@Configuration注解类中，则会使用CGLIB代理去调用@Bean标注的方法并返回对象的引用，在@Configuration注解中使用@Bean也可以防止同一个@Bean方法被意外调用多次时而产生细微的难以排除的错误。
+@AutoWired注解可用于为类的属性和方法进行注值，默认情况下，其依赖的对象必须存在（bean可用），如果改变这种默认方式，可以设置其required属性为false,@Autowired注解默认按类型装配，如果容器中包含多个同一类型的bean,那么启动容器时会报找不到指定类型bean的异常，解决办法是通过@Qualifier注解进行限定，指定注入bean的名称，
