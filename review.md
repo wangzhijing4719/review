@@ -61,9 +61,22 @@ try{}里有一个 return 语句，那么紧跟在这个 try 后的 finally{}里�
 运行时异常与受检异常的区别:运行时异常表示虚拟机的通常操作中可能遇到的异常，是一种常见的运行错误，而受检异常是与程序运行的上下文环境有关，即使程序无误，仍然可能由于使用的问题而引发，java编译器要求方法必须声明抛出可能发生的受检异常，
 对异常处理的原则：1、保持异常的原子性，2、优先使用标准的异常，对可以恢复的异常使用受检异常，对编程错误使用运行时异常，3、避免不必要的使用受检异常（可以通过一些状态检测手段来避免异常的发生），不要在catch中忽略掉捕获到的异常，
 常见的异常？
-- ArithmeticException（算术异常）- ClassCastException （类转换异常）- IllegalArgumentException （非法参数异常）- IndexOutOfBoundsException （下标越界异常- NullPointerException （空指针异常）- SecurityException （安全异常），ClassNotFoundException(类未找到异常），SQLException（sql语句异常），finally与finalize的区别：通常放在try...catch...的后面构造总是执行代码块，这就意味着程序无论正常执行，还是发生异常，这里的代码只要JVM不关闭都能执行，可以将释放外部资源的代码写在finally块中，finalize:Object中定义的方法，java中允许使用finalize()方法在垃圾处理器中将对象从内存中清除出去之前，做必要的清理工作，这个方法是有垃圾回收器，在销毁对象时调用的，通过重写finalize()方法可以整理系统资源，或者执行其他的清理工作，
+ArithmeticException（算术异常）- ClassCastException （类转换异常）- IllegalArgumentException （非法参数异常）- IndexOutOfBoundsException （下标越界异常- NullPointerException （空指针异常）- SecurityException （安全异常），ClassNotFoundException(类未找到异常），SQLException（sql语句异常），finally与finalize的区别：通常放在try...catch...的后面构造总是执行代码块，这就意味着程序无论正常执行，还是发生异常，这里的代码只要JVM不关闭都能执行，可以将释放外部资源的代码写在finally块中，finalize:Object中定义的方法，java中允许使用finalize()方法在垃圾处理器中将对象从内存中清除出去之前，做必要的清理工作，这个方法是有垃圾回收器，在销毁对象时调用的，通过重写finalize()方法可以整理系统资源，或者执行其他的清理工作，
 注意：try...catch...中异常（能使用父类型的地方一定能使用子类型），即catch中的异常能够抓住try中的异常。
 Collection与Collections的区别：Collection是一个接口，它是set、List等容器的父接口，Collections是一个工具类，提供了一系列的静态方法来辅助容器操作，这些方法包含对容器的搜索、排序、线程安全化等操作。
 @PathVariable 可以将URL中占位符参数绑定到控制器处理方法的入参中，Url中的{xxx}占位符可以通过@PathVariable("xxx")绑定到方法的入参中。@Param注解是给参数命名，参数命名后就能根据名字得到参数值，正确的将参数传入sql语句中，而@Param注解括号中的参数名称为sql语句中的数据，用括号中的参数名称代替sql语句中的参数。
 将普通类加入Ioc容器中定义Bean的注解：@Component、@Service、@Controller、@Bean、@Repository，@Qualifier注解定义工厂名称的方法，@Scope注解定义该bean作用域的范围，@Configuration注解是将这个类作为创建各种bean的工厂。CGLIB简称动态代理：而在spring框架中@Component注解，在使用@Component注解的类中不会强制使用CGLIB代理去拦截方法和属性，而在@Configuration注解类中，则会使用CGLIB代理去调用@Bean标注的方法并返回对象的引用，在@Configuration注解中使用@Bean也可以防止同一个@Bean方法被意外调用多次时而产生细微的难以排除的错误。
-@AutoWired注解可用于为类的属性和方法进行注值，默认情况下，其依赖的对象必须存在（bean可用），如果改变这种默认方式，可以设置其required属性为false,@Autowired注解默认按类型装配，如果容器中包含多个同一类型的bean,那么启动容器时会报找不到指定类型bean的异常，解决办法是通过@Qualifier注解进行限定，指定注入bean的名称，
+@AutoWired注解可用于为类的属性和方法进行注值，默认情况下，其依赖的对象必须存在（bean可用），如果改变这种默认方式，可以设置其required属性为false,@Autowired注解默认按类型装配，如果容器中包含多个同一类型的bean,那么启动容器时会报找不到指定类型bean的异常，解决办法是通过@Qualifier注解进行限定，指定注入bean的名称.
+throw、throws、throwabled的区别：throw是方法中抛出了一个异常，只能通过new throw来创建异常，throws是定义在方法处或者类定义处声明该类或方法可能产生的异常就像抛出的异常，需要调用处去处理。throwable是所有错误和异常的超类，所以当不知道要产生的异常是什么类型时，直接throws  throwable即可。
+Collections是java.util下的类，它包含有各种有关集合操作的静态方法，而Collection是java.util下的接口，它是各种集合机构的父接口。
+列出自己常用的jdk中的数据结构：线性表，链表，哈希表。
+java反射机制的作用：1、在运行时判断任意一个对象的所属的类，2、在运行时构造任意一个类的对象，3、在运行时判断任意一个类的所具有的成员变量和方法，4、在运行时调用任意一个对象的方法。
+什么是java序列化，而什么时候用到java序列化？
+序列化是一种用来处理对象流的机制，所谓对象流就是将对象的内容进行流化，可以对流化的对象进行读写操作，也可将流化后的对象传输与网络之间，序列化是为了解决对对象流进行读写操作时所引发的问题。序列化的实现是通过类实现Serializable接口,而实现Serializable是为了标注该对象是可被序列化的，然后使用一个输出流（FileOutputStream）来构造一个ObjectOutPutStream(对象流）对象，使用ObjectOutPutStream对象的writeObject(Obj obj)方法就可以将参数为obj的对象写出（即保存其状态），要恢复的话则用输入流。
+java数据库编程的基本流程是什么？
+1、注册驱动，2、建立连接，3、创建Statement,4、执行sql语句，5、处理结果集，6、关闭连接。
+Statement、PreparedStatement,CallableStatment的区别？
+1、Statement是PreparedStatement/CallableStatement的父类，2、Statement是直接发送sql语句到数据库的，事先没有进行预编译，PreparedStatement会将sql进行预编译，当sql语句进行重复执行时，数据库会调用以前预编译好的sql语句，所以PreparedStatement在性能方面会更好，3、PreparedStatement在执行sql时,对传入的参数可以进行强制的类型转换，以保证数据格式与底层数据库格式一致。4、CallableStatmemt适用于存储过程的查询表达语句。
+PreparedStatement与Statement的区别：1、PreparedStatement可以写参数化查询，比Statement能获得更好的性能，2、对于PreparedStatement来说，数据库可以使用已经编译过的及定义好的执行计划，这种预处理语句查询比普通查询速度更快，3、PreparedStatement可以阻止常见的sql注入式攻击，Preparedstatement可以写动态sql语句，Preparedstatement与java.sql.Connection对象是关联的，一旦关闭了connection,Preparedstatement是无法使用的，PreparedStatement不支持预编译的sql查询的JDBC的驱动，在调用connection.preparedStatement(sql)的时候，它不会把sql查询语句发送到数据库进行预处理，而是等待执行查询操作的时候（调用executeQuery()方法时）才把查询语句发送给数据库，这种情况和使用Statement是一样的。
+说说连接池吧？连接池放了N个Connection对象，本质上是放在内存中，在内存中划出一块缓存内存，应用程序每次从池中获取Connection对象，而不是直接从数据里获得，这样不占用服务器的内存资源，如果不使用连接池会出现以下的情况：占用服务器的内存资源，导致服务器的运行速度变慢，应用连接池的三种方式，自定义连接池，使用第三方连接池，使用服务器自带的连接池，连接池比一般的直接连接更有优越性，因为它提高了性能的同时，还保存了宝贵的资源，在整个应用程序的使用过程中，当中重复的打开导致性能的下降，而池连接只在服务器启动时打开一次，从而消除了这种性能问题。连接池主要考虑的就是性能，每次获取连接和释放连接都有很大的工作量，会对性能有很大的影响，而对资源来说启的就是反作用了，而不是直接从数据里获得，这样不占服务器的内存资源，所以一般要建立连接池，而连接的数量要适当，不能太大，太大会过度消耗资源，所以这时候我们要考虑的就是内存与资源的平衡，连接池就是为了避免重复多次的打开数据库连接而造成的性能的下降和系统资源的浪费。
+Tcp/ip是个协议组，可分为三个层次：网络层，传输层和应用层，
